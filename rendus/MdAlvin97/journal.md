@@ -1,0 +1,295 @@
+# Carnet de bord
+Identifiant GitHub : MdAlvin97
+# Mes preuves
+
+TP1 
+Etape A 1. L'état du fichier ; Le fichier n'est pas visible par Git, il faut le préparer avec Git add pour ensuite pouvoir le commiter.
+
+Etape A
+
+À écrire : que fait add que ne fait pas l'enregistrement dans l'éditeur ?
+Git add permet de préparer la version du fichier afin de pouvoir le commiter contrairement à l'enregistrement de l'éditeur
+
+Etape B
+Prédiction avant de continuer : si vous commitez maintenant, quelle phrase manque dans le commit ?
+Pourquoi ?
+Si je commite maintenant, il va manquer la phrase " Inscription sur place." car après avoir enregistrer cette phrase, on n'a pas préparer le fichier à être commiter avec la commande git add.
+
+Etape C 
+Explication de l'index :
+C'est une étape entre mon fichier modifié et l'historique Git.
+Quand je fais git add ça va le préparer pour ensuite enregistrer avec le commit.
+
+Etape D 
+Différence entre fichier enregistré, index et commit :
+Un fichier enregistré est lorsque qu'on enregistre celui-ci tout simplement dans l'éditeur, il n'est pas considéré par Git.
+
+L'index c'est l'étape entre mon fichier modifié et l'historique Git. Quand je fais git add ça va le préparer pour ensuite enregistrer avec le commit.
+
+Un commit c'est l'enregistrement des fichiers dans l'historique Git, et qui sont prêt à être envoyé (push) vers Github.
+
+Trace individuelle 
+Un court extrait du log :
+$ git log --oneline
+6ae6c92 (HEAD -> main) docs: expliquer le fonctionnement de l index
+31d8bd4 chore: ignorer les fichiers locaux
+1aa0851 docs: preciser les conditions d acces
+3d00d42 docs: presenter le forum ENSUP
+...
+
+Expliquez pourquoi préparer seulement une partie peut aider à créer des commits cohérents :
+Car cela va permettre d'avoir un bon historique git, permettre de mieux comprendre celui-ci. Cela aide à créer des commits cohérents, c'est-à-dire des commits qui ne concernent qu'une seule modification à la fois. "git add -p" permet de choisir précisément quels changements inclure dans un commit.
+
+
+Enquête 1 : le fichier disparu du diff ·
+1. Pendant 3 min, écrivez votre prédiction avant d'exécuter git diff : Il ne va pas montrer le texte qu'il y a dans acces.md selon moi
+
+2.Pendant 5 min, comparez git status --short, git diff, puis git add acces.md et git diff --cached :
+
+git status --short me permet d'observer l'état du fichier ; journal.md a été modifié mais reste à le préparer et pour acces.md ça dit que le fichier est totalement nouveau, git ne l'avait pas dans son historique.
+git diff montre alors que ce qui a été modifier dans journal.md et non pas ce qui a été modifier dans acces.md
+
+Tandis que : git add acces.md prepare l fichier acces.md donc Git le connais maintenant
+git diff --cached montre le contenu qui a été modifié dans tous les fichiers
+
+
+3.Pendant 5 min, expliquez pourquoi un fichier non suivi n'apparaît pas dans le diff ordinaire : git diff compare uniquement les fichiers déjà suivis par Git avec leur dernière version commitée. Un fichier non suivi n'a jamais été ajouté à l'historique Git, il n'a donc rien à comparer, ce qui explique qu'il n'apparaisse pas dans un diff ordinaire.
+
+
+
+4.Preuve de git log --oneline -- acces.md et de git show 31ada33 :
+
+git log --oneline -- acces.md
+31ada33 (HEAD -> main) docs: ajout d indication d acces
+
+medeu@Alv99 MINGW64 ~/ensup-git-github-2026/rendus/MdAlvin97 (main)
+$ git show 31ada33
+commit 31ada33aed676aebfd4753c1e185a490ab0392a1 (HEAD -> main)
+Author: MdAlvin97 <medeufalvin@gmail.com>
+Date:   Wed Sep 23 19:10:43 2026 +0200
+
+    docs: ajout d indication d acces
+
+diff --git a/rendus/MdAlvin97/README.md b/rendus/MdAlvin97/README.md
+index 7782e61..5b99922 100644
+--- a/rendus/MdAlvin97/README.md
++++ b/rendus/MdAlvin97/README.md
+@@ -1,4 +1,6 @@
+ # Forum des associations ENSUP
+ Un guide pour préparer sa première visite sur le campus.
+ Entrée gratuite.
+- Inscription sur place.
+\ No newline at end of file
++Inscription sur place.
++Horaire : 9h-12h
++Du 01/10/2026 au 10/10/2026
+\ No newline at end of file
+diff --git a/rendus/MdAlvin97/acces.md b/rendus/MdAlvin97/acces.md
+new file mode 100644
+index 0000000..a27e318
+--- /dev/null
++++ b/rendus/MdAlvin97/acces.md
+@@ -0,0 +1,2 @@
++Entrée visiteurs : porte
++principale. Présenter son invitation à l'accueil.
+\ No newline at end of file
+diff --git a/rendus/MdAlvin97/journal.md b/rendus/MdAlvin97/journal.md
+index 80bb094..b7a997f 100644
+--- a/rendus/MdAlvin97/journal.md
++++ b/rendus/MdAlvin97/journal.md
+@@ -18,4 +18,23 @@ Si je commite maintenant, il va manquer la phrase " Inscription sur place." car
+ Etape C
+ Explication de l'index :
+ C'est une étape entre mon fichier modifié et l'historique Git.
+-Quand je fais git add ça va le préparer pour ensuite enregistrer avec le commit.
+\ No newline at end of file
++Quand je fais git add ça va le préparer pour ensuite enregistrer avec le commit.
++
++Etape D
++Différence entre fichier enregistré, index et commit :
++Un fichier enregistré est lorsque qu'on enregistre celui-ci tout simplement dans l'éditeur, il n'est pas considéré par Git.
++
++L'index c'est l'étape entre mon fichier modifié et l'historique Git. Quand je fais git add ça va le préparer pour ensuite enregistrer avec le commit.
++
++Un commit c'est l'enregistrement des fichiers dans l'historique Git, et qui sont prêt à être envoyé (push) vers Github.
++
++Trace individuelle
++Un court extrait du log :
++$ git log --oneline
++6ae6c92 (HEAD -> main) docs: expliquer le fonctionnement de l index
++31d8bd4 chore: ignorer les fichiers locaux
++1aa0851 docs: preciser les conditions d acces
++3d00d42 docs: presenter le forum ENSUP
++...
++
++
+
+
+
+git log --oneline -- acces.md permet de voir le commit qui a été fait dont le fichier acces.md y figure dedans.
+Et de git show 31ada33 montre tous les ajouts et les modifications qui a eu lieu en faisant ce commit.
+
+
+TP 2
+
+2.Avant de revenir sur main, prédisez quels fichiers seront visibles :
+Je pense que tous les fichiers seront visibles y compris le nouveau fichier programme.md
+
+4. Expliquer
+sur quelle branche faut-il être pour intégrer une évolution dans main ? Il faut être sur la branche main
+
+Quelle commande prouve que le contenu est présent ? La commande ls prouve bien que le contenue est présent
+
+Dessinez le graphe avant et après :
+Avant :
+main:                 A------B
+                              \
+feature/programme               C    (nouveau commit)
+
+Après :
+main                 A---B---C
+
+
+Enquête 2
+Comparez avec le fast-forward du TP 2 :
+J'ai fait une nouvelle branche avec un nouveau fichier, puis sur le main j'ai fait une modification sur le README.md donc Git a créé un vrai commit de fusion avec deux parents.
+
+$ git show --no-patch --format="%h %p %s" HEAD
+02185e0 4a927a1 af035b1 merge: ajouter les indications d accessibilite
+
+Les deux identifiants de parents sont : 4a927a1 (main) et af035b1 (feature/accessibilite).
+
+
+TP3 
+L'URL de ma PR : https://github.com/AbidHamza ensup-git-github-2026/pull/1
+
+Différence entre fork, clone et branche : 
+Le fork copie un dépôt vers un autre compte GitHub.
+
+Le clone permet de copier un dépôt vers mon PC, c'est une action qui se fait avec Git (côté PC).
+
+Une branche c'est une ligne de développement à l'intérieur d'un même dépôt (que ce soit en local ou sur GitHub). Elle permet de travailler sur une chose sans toucher à main.
+
+Enquête 3 
+
+1. Permission denied :
+origin pointe peut-être vers le dépôt du formateur au lieu de mon propre fork. Il faut vérifier quel compte est connecté et où origin pointe réellement.
+Commande pour vérifier : git remote -v
+
+2. non-fast-forward :
+Des commits ont probablement été ajoutés sur GitHub depuis mon dernier envoi.
+Commande pour vérifier : git fetch (récupère les nouveaux commits sans les fusionner)
+
+3. nothing to commit alors que le fichier paraît modifié :
+le fichier n'est peut-être pas enregistré dans l'éditeur, pas dans le bon dossier ou déjà commité.
+Commande pour vérifier : git status
+
+TP4
+D.
+
+PR écrite : https://github.com/MdAlvin97/ensup-git-github-2026/pull/1
+PR relue : https://github.com/MdAlvin97/ensup-git-github-2026/pull/1
+
+Commentaire utile reçu : "Qui prend le relais si la coordination des salles est absente ? Ajoute une consigne précise."
+
+commit de correction : 336a5b7 docs: preciser le remplacement en cas d absence
+
+TP5
+F.
+Pourquoi Git n'a-t-il pas choisi seul ? Git n'a aucun moyen de savoir quelle heure est la bonne, c'est à une personne réelle de le faire. Il s'arrête et marque le conflit.
+
+Quelle version était HEAD ?
+HEAD désigne la branche sur laquelle on se trouve au moment de la fusion. Donc pour 9h30 c'était main et pour 10h00 c'était feature/horaire
+
+À quoi sert git merge --abort ?
+Cette commande annule la fusion en cours et remet le dépôt dans l'état exact, avant le git merge.
+
+
+G.
+Deux parents du commit de fusion :
+09e975e (main) docs: annoncer 09h30 
+80b1b4d (feature/horaire) feat: proposer 10h00
+
+Erreur de départ : brouillon.txt ajouté à l'index par erreur,
+puis retiré avec git restore --staged.
+
+Deux propositions :
+main : Accueil : 09h30
+feature/horaire : Accueil : 10h00
+
+Décision retenue : Accueil : 09h45.
+
+Commandes de fin de fusion :
+git add horaire.txt
+git commit -m "fix: convenir de 09h45"
+
+Pourquoi fetch seul n'ajoute pas la visite libre à mon fichier local ?
+git fetch origin télécharge les commits de GitHub et met à jour
+`origin/main`, mais il ne modifie ni ma branche `main` ni mes fichiers.
+
+
+Mission finale
+
+l'URL de la PR : https://github.com/MdAlvin97/ensup-git-github-2026/pull/3
+
+où doit-il se présenter ? (acces.md, point de rendez-vous)
+que faire si l'entrée est fermée ? (acces.md)
+à qui demander de l'aide ? (equipe.md, contact sur place)
+
+Issue : #2
+
+Revue effectuée** : auto-revue de la PR #3.
+Changement simulé : premier atelier décalé de 10h00 à 10h30, commit de correction
+« docs: decaler le premier atelier a 10h30 ». Relecture README / programme : aucune contradiction.
+
+Problème rencontré : en ouvrant la PR de livraison, GitHub la préparait vers le dépôt du formateur (AbidHamza) avec le modèle de la PR de collecte, alors que l'énoncé demandait une PR dans mon fork.
+
+Diagnostic : sur un fork, la destination par défaut est le dépôt d'origine ; l'URL
+« compare » commençait par github.com/AbidHamza/...
+
+Solution : j'ai changé le base repository pour MdAlvin97/ensup-git-github-2026 (base main, compare feature/livraison). La PR #3 est bien dans mon fork.
+
+Tag : v1.0 dans mon fork.
+
+## Contrôle de rendu
+
+Que copie git add ?
+Il copie le contenu actuel du fichier dans l'index (la zone de préparation).
+Le commit enregistre ce qui est dans l'index, pas ce qui est sur le disque.
+Si je modifie le fichier après add, il faut refaire add.
+
+Comment prouver qu'un commit a été poussé ?
+git status indique « up to date with origin/main », git log --oneline --all
+montre origin/main sur le même commit que main, et le commit est visible
+sur GitHub dans l'onglet Commits avec son hash.
+
+Pourquoi Git n'a-t-il pas choisi l'horaire ?
+Les deux branches avaient modifié la même ligne de horaire.txt (09h30 et 10h00)
+depuis le même ancêtre. Git ne peut pas savoir laquelle est juste : c'est une
+décision d'une personne réelle (09h45).
+
+Que reste-t-il après un revert ?
+Le commit d'origine reste dans l'historique, et un nouveau commit inverse ses
+changements. Le fichier disparaît du dossier de travail, mais l'histoire est intacte.
+
+
+Un diff : commit docs: decaler le premier atelier a 10h30 : 
+
+diff --git a/rendus/MdAlvin97/programme.md b/rendus/MdAlvin97/programme.md
+index 10ec602..8a30598 100644
+--- a/rendus/MdAlvin97/programme.md
++++ b/rendus/MdAlvin97/programme.md
+@@ -2,7 +2,7 @@
+
+
+ 09h30 - 10h00 : accueil : Hall A
+-10h00  - 11h00 : découverte des formations : Salle 1
+-11h00 - 12h00 : démonstrations : Salle 2
+-12h00 - 13h00 : visite libre des stands : Hall A
+-13h00 - 14h00 : pause déjeuner : Espace détente
+\ No newline at end of file
++10h30  - 11h30 : atelier 1découverte des formations : Salle 1
++11h30 - 12h30 : atelier 2 démonstrations : Salle 2
++12h30 - 13h30 : visite libre des stands : Hall A
++13h30 - 14h30 : pause déjeuner : Espace détente
+\ No newline at end of file
